@@ -1,14 +1,15 @@
 import { Fragment, useMemo, useState } from 'react';
 
-import { Button, Step, Stepper } from '../../components';
+import { Button, Step, Stepper, StepperBar } from '../../components';
 import { step1, step2, step3, step4 } from '../../mock';
 
 import './stepper-section.css';
 
 const steps = [step1, step2, step3, step4];
+const stepsTitles = steps.map((step) => step.title);
 
 function StepperSection() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   const stepsLength = useMemo(() => steps.length, [steps]);
 
   const handleNext = () => {
@@ -18,7 +19,7 @@ function StepperSection() {
   };
 
   const handleBack = () => {
-    if (currentStep !== 0) {
+    if (currentStep >= 0) {
       setCurrentStep((prevCurrentStep) => prevCurrentStep - 1);
     }
   };
@@ -34,23 +35,27 @@ function StepperSection() {
       <h2>Stepper section</h2>
       <section>
         <Stepper activeStep={currentStep}>
-          {steps.map(({ title, step }) => (
-            <Fragment key={step}>
-              <Step title={title} position={step} />
+          <StepperBar activeStep={currentStep} stepsTitles={stepsTitles} />
 
-              <div className="stepper-button-section">
-                <Button
-                  onClick={handleBack}
-                  label={currentStep === 0 ? 'Cancel' : 'Back'}
-                  disabled={currentStep === 0}
-                />
-                <Button
-                  onClick={
-                    currentStep !== stepsLength ? handleNext : handleSubmit
-                  }
-                  label={currentStep !== stepsLength ? 'Next' : 'Submit'}
-                />
-              </div>
+          {steps.map(({ step }) => (
+            <Fragment key={step}>
+              <Step />
+
+              {currentStep === step ? (
+                <div className="stepper-button-section">
+                  <Button
+                    onClick={handleBack}
+                    label={currentStep === 1 ? 'Cancel' : 'Back'}
+                    disabled={currentStep === 1}
+                  />
+                  <Button
+                    onClick={
+                      currentStep !== stepsLength ? handleNext : handleSubmit
+                    }
+                    label={currentStep !== stepsLength ? 'Next' : 'Submit'}
+                  />
+                </div>
+              ) : null}
             </Fragment>
           ))}
         </Stepper>

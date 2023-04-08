@@ -1,24 +1,11 @@
-import type { ReactElement } from 'react';
-
-import './step.css';
+import type { ReactNode } from 'react';
 
 type StepProps = {
-  title: string;
-  position: number;
-  children?: ReactElement;
+  children?: ReactNode;
 };
 
-function Step({ title, position, children }: StepProps) {
-  return (
-    <>
-      <div className="step-container">
-        <span className="step-number">{position}</span>
-        <p>{title}</p>
-      </div>
-
-      {children ?? <div>{children}</div>}
-    </>
-  );
+function Step({ children }: StepProps) {
+  return <>{children ?? <div>{children}</div>}</>;
 }
 
 export { Step };
