@@ -1,0 +1,17 @@
+.step-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  background-color: black;
+  padding: 8px;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+}

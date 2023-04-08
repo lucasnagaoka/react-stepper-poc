@@ -1,16 +1,12 @@
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 type StepperProps = {
-  children: ReactElement;
+  activeStep: number;
+  children: ReactNode;
 };
 
-function Stepper({ children }: StepperProps) {
-  return (
-    <>
-      <p>Hello Stepper</p>
-      {children}
-    </>
-  );
+function Stepper({ activeStep = 0, children }: StepperProps) {
+  return <>{children}</>;
 }
 
 export { Stepper };
