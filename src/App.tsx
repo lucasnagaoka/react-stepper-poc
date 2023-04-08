@@ -9,7 +9,6 @@ import { step1, step2, step3, step4 } from './mock';
 const steps = [step1, step2, step3, step4];
 
 function App() {
-  const [count, setCount] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const stepsLength = useMemo(() => steps.length, [steps]);
 
