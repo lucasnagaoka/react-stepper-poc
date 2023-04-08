@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import reactLogo from '/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -11,6 +11,27 @@ const steps = [step1, step2, step3, step4];
 function App() {
   const [count, setCount] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
+  const stepsLength = useMemo(() => steps.length, [steps]);
+
+  const handleNext = () => {
+    if (currentStep < stepsLength) {
+      setCurrentStep((prevCurrentStep) => prevCurrentStep + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep !== 0) {
+      setCurrentStep((prevCurrentStep) => prevCurrentStep - 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('Submitting...');
+  };
+
+  useEffect(() => {
+    console.log({ currentStep, stepsLength });
+  }, [currentStep]);
 
   return (
     <div className="App">
@@ -34,8 +55,17 @@ function App() {
                 <Step title={title} position={step} key={step} />
 
                 <div className="stepper-button-section">
-                  <Button label="Back" />
-                  <Button label="Next" />
+                  <Button
+                    onClick={handleBack}
+                    label={currentStep === 0 ? 'Cancel' : 'Back'}
+                    disabled={currentStep === 0}
+                  />
+                  <Button
+                    onClick={
+                      currentStep !== stepsLength ? handleNext : handleSubmit
+                    }
+                    label={currentStep !== stepsLength ? 'Next' : 'Submit'}
+                  />
                 </div>
               </>
             ))}
