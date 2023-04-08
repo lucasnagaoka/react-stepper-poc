@@ -3,6 +3,8 @@ import reactLogo from '/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
+import { Step, Stepper } from './components';
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -21,9 +23,15 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+        <hr></hr>
+
+        <h2>Stepper section</h2>
+        <section>
+          <Stepper>
+            <Step />
+          </Stepper>
+        </section>
       </div>
     </div>
   );
