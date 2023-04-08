@@ -1,3 +1,9 @@
+.stepper-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .step-container {
   display: flex;
   align-items: center;
@@ -14,4 +20,23 @@
   border-radius: 100%;
   width: 8px;
   height: 8px;
+}
+
+.step-number.reverse {
+  background-color: white;
+  color: black;
+  outline: 1px solid black;
+}
+
+.step-number.disabled {
+  background-color: #666;
+  color: #ccc;
+  outline: 1px solid #ccc;
+}
+
+.remaining-steps {
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

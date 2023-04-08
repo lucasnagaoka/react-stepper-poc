@@ -6,7 +6,6 @@ import { step1, step2, step3, step4 } from '../../mock';
 import './stepper-section.css';
 
 const steps = [step1, step2, step3, step4];
-const stepsTitles = steps.map((step) => step.title);
 
 function StepperSection() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -35,7 +34,7 @@ function StepperSection() {
       <h2>Stepper section</h2>
       <section>
         <Stepper activeStep={currentStep}>
-          <StepperBar activeStep={currentStep} stepsTitles={stepsTitles} />
+          <StepperBar activeStep={currentStep} steps={steps} />
 
           {steps.map(({ step }) => (
             <Fragment key={step}>

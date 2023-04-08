@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
+import { PastSteps, RemainingSteps } from './components';
+
+import type { StepperBarProps } from '.';
+
 import './stepper-bar.css';
 
-type StepperBarProps = {
-  activeStep: number;
-  stepsTitles: string[];
-};
-
-function StepperBar({ activeStep, stepsTitles }: StepperBarProps) {
-  useEffect(() => {
-    console.log({ activeStep, stepsTitles });
-  }, []);
-
+function StepperBar({ activeStep, steps }: StepperBarProps) {
   return (
-    <div className="step-container">
-      <span className="step-number">{activeStep}</span>
-      <p>{stepsTitles[activeStep - 1]}</p>
+    <div className="stepper-bar">
+      <div className="step-container">
+        <PastSteps activeStep={activeStep} steps={steps} />
+
+        <span className="step-number">{activeStep}</span>
+        <p>{steps[activeStep - 1]?.title}</p>
+      </div>
+
+      <RemainingSteps activeStep={activeStep} steps={steps} />
     </div>
   );
 }
