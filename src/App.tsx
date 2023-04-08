@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import reactLogo from '/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -29,10 +29,6 @@ function App() {
     console.log('Submitting...');
   };
 
-  useEffect(() => {
-    console.log({ currentStep, stepsLength });
-  }, [currentStep]);
-
   return (
     <div className="App">
       <div>
@@ -51,8 +47,8 @@ function App() {
         <section>
           <Stepper activeStep={currentStep}>
             {steps.map(({ title, step }) => (
-              <>
-                <Step title={title} position={step} key={step} />
+              <Fragment key={step}>
+                <Step title={title} position={step} />
 
                 <div className="stepper-button-section">
                   <Button
@@ -67,7 +63,7 @@ function App() {
                     label={currentStep !== stepsLength ? 'Next' : 'Submit'}
                   />
                 </div>
-              </>
+              </Fragment>
             ))}
           </Stepper>
         </section>
