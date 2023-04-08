@@ -1,0 +1,9 @@
+.card {
+  width: 100%;
+}
+
+.stepper-button-section {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 8px;
+}
