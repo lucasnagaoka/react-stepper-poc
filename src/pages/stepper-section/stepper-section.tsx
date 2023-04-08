@@ -36,9 +36,13 @@ function StepperSection() {
         <Stepper activeStep={currentStep}>
           <StepperBar activeStep={currentStep} steps={steps} />
 
-          {steps.map(({ step }) => (
+          {steps.map(({ step, content }) => (
             <Fragment key={step}>
-              <Step />
+              <Step
+                stepContent={content}
+                activeStep={currentStep}
+                stepNumber={step}
+              />
 
               {currentStep === step ? (
                 <div className="stepper-button-section">
