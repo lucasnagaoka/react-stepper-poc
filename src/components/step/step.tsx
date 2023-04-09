@@ -1,8 +1,9 @@
+import { useStepper } from '../../hooks';
+
 import type { ReactNode } from 'react';
 
 type StepProps = {
   children?: ReactNode;
-  activeStep: number;
   stepNumber: number;
   stepContent: {
     fields: Array<{
@@ -12,7 +13,9 @@ type StepProps = {
   };
 };
 
-function Step({ children, stepContent, activeStep, stepNumber }: StepProps) {
+function Step({ children, stepContent, stepNumber }: StepProps) {
+  const { currentStep: activeStep } = useStepper();
+
   return (
     <>
       {children ? (

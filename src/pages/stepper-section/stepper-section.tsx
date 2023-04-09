@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 
 import { Button, Step, Stepper, StepperBar } from '../../components';
+import { useStepper } from '../../hooks';
 
 import './stepper-section.css';
-import { useStepper } from '../../hooks';
 
 function StepperSection() {
   const {
@@ -25,16 +25,12 @@ function StepperSection() {
 
       <h2>Stepper section</h2>
       <section>
-        <Stepper activeStep={currentStep}>
-          <StepperBar activeStep={currentStep} steps={steps} />
+        <Stepper>
+          <StepperBar />
 
           {steps.map(({ step, content }) => (
             <Fragment key={step}>
-              <Step
-                stepContent={content}
-                activeStep={currentStep}
-                stepNumber={step}
-              />
+              <Step stepContent={content} stepNumber={step} />
 
               {currentStep === step ? (
                 <div className="stepper-button-section">

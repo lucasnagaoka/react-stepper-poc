@@ -1,6 +1,8 @@
-import { StepperBarProps } from '../';
+import { useStepper } from '../../../hooks';
 
-function RemainingSteps({ activeStep, steps }: StepperBarProps) {
+function RemainingSteps() {
+  const { currentStep: activeStep, steps } = useStepper();
+
   return (
     <div className="remaining-steps">
       {steps.map(({ step }) => {
