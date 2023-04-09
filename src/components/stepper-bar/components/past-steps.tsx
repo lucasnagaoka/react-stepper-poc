@@ -1,6 +1,8 @@
-import { StepperBarProps } from '../';
+import { useStepper } from '../../../hooks';
 
-function PastSteps({ activeStep, steps }: StepperBarProps) {
+function PastSteps() {
+  const { currentStep: activeStep, steps } = useStepper();
+
   return (
     <>
       {steps.map(({ step }) => {
