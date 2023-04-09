@@ -1,31 +1,23 @@
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment } from 'react';
 
 import { Button, Step, Stepper, StepperBar } from '../../components';
-import { step1, step2, step3, step4 } from '../../mock';
 
 import './stepper-section.css';
-
-const steps = [step1, step2, step3, step4];
+import { useStepper } from '../../hooks';
 
 function StepperSection() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const stepsLength = useMemo(() => steps.length, [steps]);
+  const {
+    currentStep,
+    steps,
+    stepsLength,
+    handleBack,
+    handleNext,
+    handleSubmit,
+  } = useStepper();
 
-  const handleNext = () => {
-    if (currentStep < stepsLength) {
-      setCurrentStep((prevCurrentStep) => prevCurrentStep + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep >= 0) {
-      setCurrentStep((prevCurrentStep) => prevCurrentStep - 1);
-    }
-  };
-
-  const handleSubmit = () => {
-    console.log('Submitting...');
-  };
+  function onSubmit() {
+    console.log('onSubmit');
+  }
 
   return (
     <div className="card">
@@ -53,7 +45,9 @@ function StepperSection() {
                   />
                   <Button
                     onClick={
-                      currentStep !== stepsLength ? handleNext : handleSubmit
+                      currentStep !== stepsLength
+                        ? handleNext
+                        : () => handleSubmit(onSubmit)
                     }
                     label={currentStep !== stepsLength ? 'Next' : 'Submit'}
                   />
